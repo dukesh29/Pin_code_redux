@@ -1,23 +1,32 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../app/store";
-import {AddDigit, CheckCode, RemoveDigit, ResetDigit} from "./CodeCheckerSlice";
+import {AddDigit, CheckCode, RemoveDigit, ResetAll, ResetCheck} from "./CodeCheckerSlice";
 
 const CodeChecker = () => {
 
   const dispatch = useDispatch();
-  const codeValue = useSelector((state: RootState) => state.CodeValidator.input);
+  const codeValue = useSelector((state: RootState) => state.CodeValidator.password);
   const checkValue = useSelector((state: RootState) => state.CodeValidator.accessGranted);
   const clicked = useSelector((state: RootState) => state.CodeValidator.clicked);
 
   const Text = checkValue ? "Access Granted" : "Access Denied!";
-  const arrow = "<";
+  const changeColor = checkValue ? {backgroundColor: "lightgreen"} : {backgroundColor: "red"};
+
+  if (checkValue) {
+    setTimeout(() => dispatch(ResetCheck()), 2000);
+  }
+
+  if (!checkValue && clicked) {
+    setTimeout(() => dispatch(ResetCheck()), 2000);
+  }
+
 
   return (
     <div className="box">
-      <div className="display">
+      <div className="display" style={clicked ? changeColor : {backgroundColor: "white"}}>
         {clicked ?
-          <p style={{margin: 0}}>{Text}</p>
+          <p style={{margin: 0, fontSize: "22px", fontWeight: "bold"}}>{Text}</p>
           : <h5>{codeValue}</h5>}
       </div>
       <div className="digits-block">
@@ -31,11 +40,11 @@ const CodeChecker = () => {
           <button onClick={() => dispatch(AddDigit("1"))}>1</button>
           <button onClick={() => dispatch(AddDigit("2"))}>2</button>
           <button onClick={() => dispatch(AddDigit("3"))}>3</button>
-          <button onClick={() => dispatch(CheckCode())}>E</button>
+          <button onClick={() => dispatch(RemoveDigit())}> {"<"} </button>
           <button onClick={() => dispatch(AddDigit("0"))}>0</button>
-          <button onClick={() => dispatch(RemoveDigit())}> {arrow} </button>
+          <button onClick={() => dispatch(CheckCode())}>E</button>
         </div>
-        <button className="resetBtn" onClick={() => dispatch(ResetDigit())}>Reset</button>
+        <button className="resetBtn" onClick={() => dispatch(ResetAll())}>Reset</button>
       </div>
     </div>
   );

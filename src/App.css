@@ -10,6 +10,7 @@
     width: 260px;
     background: #ddb9e5;
     padding: 10px;
+    border-radius: 20px;
 }
 
 .display {
@@ -65,8 +66,8 @@ button:hover {
 
 .resetBtn {
     height: 60px;
-    font-size: 24px;
+    font-size: 14px;
     font-weight: bold;
-    width: 150px;
+    width: 60px;
     margin: 0 auto;
 }
