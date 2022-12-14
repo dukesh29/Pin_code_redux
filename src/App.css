@@ -1,0 +1,72 @@
+.App {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 260px;
+    background: #ddb9e5;
+    padding: 10px;
+}
+
+.display {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    width: 240px;
+    height: 80px;
+    margin: 10px;
+    background: white;
+    border-radius: 10px;
+}
+
+.display h5 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.digits-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 240px;
+    gap: 10px;
+}
+
+.digits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+button:hover {
+    background: #a363ea;
+    color: white;
+}
+
+.digits button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.resetBtn {
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    width: 150px;
+    margin: 0 auto;
+}
